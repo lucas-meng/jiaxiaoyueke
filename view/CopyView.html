@@ -1,0 +1,85 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" href="css/order.css">
+<script type="text/javascript" src="js/clipboard.min.js" ></script>
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>复制约课信息</title>
+</head>
+<body>
+<header class="navbar"> 
+				
+                <div class="nav_main">
+                	复制约课信息
+                	<a class="order_c_back" href="IndexController.class.php">
+                    <img src="images/c_back_btn.png">
+                    </a>
+                	
+				</div> 
+            </header>
+            <br>
+            <br>
+            <br>
+<div align="center">
+	<textarea style="width:200px;height:250px;" id="str">
+罗教练   明天（<?php echo $hoDay ?>）开放第1 、2、3、4大节课 ，第1大节65分钟（建议1～2人约车），第2、3、4大节90分钟（建议2～3人约车）请同学们跟帖报名约车
+第1大节： <?php foreach((array)$studentNames[1] as $studentName){ echo $studentName['student_name']."，"; } ?>
+
+第2大节： <?php foreach((array)$studentNames[2] as $studentName){ echo $studentName['student_name']."，"; } ?>
+
+第3大节： <?php foreach((array)$studentNames[3] as $studentName){ echo $studentName['student_name']."，"; } ?>
+
+第4大节： <?php foreach((array)$studentNames[4] as $studentName){ echo $studentName['student_name']."，"; } ?>
+
+    （每人每天限约一个课时).         (不在农大搭车的学员在名字前加一个[社]字)
+	</textarea>
+	<br><br>
+	<input type="button" value="复制信息(安卓)" onclick="copyText()" class="btn btn-primary radius"> | 
+	<input type="button" value="复制信息(苹果)" id="btn" class="btn btn-primary radius">
+	
+</div>
+<script type="text/javascript">
+function copyText(){
+    var v = document.getElementById("str");
+    if(v.value.length>0){
+        v.select();
+        document.execCommand("Copy");
+        alert('已经复制成功，前往粘贴即可！');
+        return false;
+    }
+}
+</script>
+<script>
+    var clipboard = new ClipboardJS('#btn', {
+        target: function() {
+            return document.querySelector('#str');
+        }
+    });
+    clipboard.on('success', function(e) {
+        //console.log(e);
+        alert('复制成功！')
+    });
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
+    </script>
+
+</body>
+</html>

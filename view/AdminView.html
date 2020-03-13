@@ -1,0 +1,155 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>约课系统后台</title>
+</head>
+<body>
+<div class="page-container">
+	<form action="?ac=insert" method="post">
+	<table class="table table-border table-bordered table-bg">
+		<thead>
+			<tr>
+				<th colspan="7" scope="col">请选择：<input type="date" id="website-copyright" name="date_date"> <input type="submit" id="website-copyright" value="生成课表" class="btn btn-primary radius" ></th>
+			</tr>
+			<tr class="text-c">
+				<th>课时</th>
+				<th>1人</th>
+				<th>2人</th>
+				<th>3人</th>
+				<th>4人</th>
+				<th>不开课</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="text-c">
+				<td>第一节课</td>
+				<td><input type="radio" name="onePeople" value="1"></td>
+				<td><input type="radio" name="onePeople" value="2"></td>
+				<td><input type="radio" name="onePeople" checked="checked" value="3"></td>
+				<td><input type="radio" name="onePeople" value="4"></td>
+				<td><input type="radio" name="onePeople" value="0"></td>
+			</tr>
+			<tr class="text-c">
+				<td>第二节课</td>
+				<td><input type="radio" name="twoPeople" value="1"></td>
+				<td><input type="radio" name="twoPeople" value="2"></td>
+				<td><input type="radio" name="twoPeople" value="3" checked="checked"></td>
+				<td><input type="radio" name="twoPeople" value="4"></td>
+				<td><input type="radio" name="twoPeople" value="0"></td>
+			</tr>
+			<tr class="text-c">
+				<td>第三节课</td>
+				<td><input type="radio" name="threePeople" value="1"></td>
+				<td><input type="radio" name="threePeople" value="2"></td>
+				<td><input type="radio" name="threePeople" value="3" checked="checked"></td>
+				<td><input type="radio" name="threePeople" value="4"></td>
+				<td><input type="radio" name="threePeople" value="0"></td>
+			</tr>
+			<tr class="text-c">
+				<td>第四节课</td>
+				<td><input type="radio" name="fourPeople" value="1"></td>
+				<td><input type="radio" name="fourPeople" value="2"></td>
+				<td><input type="radio" name="fourPeople" value="3" checked="checked"></td>
+				<td><input type="radio" name="fourPeople" value="4"></td>
+				<td><input type="radio" name="fourPeople" value="0"></td>
+			</tr>
+			<tr class="text-c">
+				<td>第五节课</td>
+				<td><input type="radio" name="fivePeople" value="1"></td>
+				<td><input type="radio" name="fivePeople" value="2"></td>
+				<td><input type="radio" name="fivePeople" value="3"></td>
+				<td><input type="radio" name="fivePeople" value="4"></td>
+				<td><input type="radio" name="fivePeople" value="0" checked="checked"></td>
+			</tr>
+			
+		</tbody>
+	</table>
+	</form>
+	<br>
+	<table class="table table-border table-bordered table-bg">
+		<tr class="text-c">
+				<th>
+					将 <input type="date" id="date_date">
+					的课程 <br><br>
+					 <input type="button" value="删除" onclick="deletes()" class="btn btn-primary radius" >
+				</th>
+		</tr>
+	</table>
+	<br>
+	<table class="table table-border table-bordered table-bg">
+		<tr class="text-c">
+				<th>
+					将 <input type="date" id="up_date_date"><br><br>
+					的第 
+					<select id="course_name">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+					 节课修改为 
+					<select id="people">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="0">0</option>
+					</select>
+					 人<br><br>
+					 <input type="button" value="修改" onclick="update()" class="btn btn-primary radius">
+				</th>
+		</tr>
+	</table>
+	
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script> 
+<!--此乃百度统计代码，请自行删除-->
+<script type="text/javascript">
+	<?php echo $msg; ?>;
+	function deletes(){
+		var date_date = $("#date_date").val();
+		if(date_date != null && date_date != ""){
+			if(confirm("您将要删除"+date_date+"的所有排课信息与学员约课信息！确定吗？")){
+				location.href="?ac=delete&date_date="+date_date;
+			}
+		}else{
+			alert("请选择日期！");
+		}
+		
+	}
+	function update(){
+		var up_date_date = $("#up_date_date").val();
+		var course_name = $("#course_name").val();
+		var people = $("#people").val();
+		if(up_date_date != null && up_date_date != ""){
+			if(confirm("您将要将"+up_date_date+"的第"+course_name+"节课约课人数改为"+people+"人！确定吗？")){
+				location.href="?ac=update&up_date_date="+up_date_date+"&course_name="+course_name+"&people="+people;
+			}
+		}else{
+			alert("请选择日期！");
+		}
+		
+	}
+</script>
+<!--/此乃百度统计代码，请自行删除-->
+</body>
+</html>
