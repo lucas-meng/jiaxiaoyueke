@@ -9,8 +9,8 @@ abstract class BaseModel {
 		$arr = array (
 				'db_host' => 'localhost',
 				'db_user' => 'root',
-				'db_pass' => 'admin123',
-				'db_name' => 'luo',
+				'db_pass' => 'root',
+				'db_name' => 'jiaxiaoyueke',
 				// 'db_user' => 'luo_junengw_com',
 				// 'db_pass' => '78MreCc7X34P37GS',
 				// 'db_name' => 'luo_junengw_com',

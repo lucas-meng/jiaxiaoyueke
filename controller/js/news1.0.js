@@ -1,1 +1,0 @@
-var showJdNewDetail=function(a,b){if(b!=""){if(confirm(b)){window.location.href=a}}else{window.location.href=a}};
